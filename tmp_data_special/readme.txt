@@ -1,0 +1,2 @@
+recognizer_images 中保存用于文本识别模型训练的图片
+recognizer_txts 中保存相对应的Label文件

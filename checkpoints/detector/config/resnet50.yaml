@@ -1,0 +1,37 @@
+MODEL:
+  BACKBONE:
+    ARCH: 'resnet50'
+  NECK:
+    IN_CHANNELS: [256, 512, 1024, 2048]
+    OUT_CHANNELS: [256, 256, 256, 256]
+  HEAD:
+    #ARCH: 'pse_head'
+    ARCH: 'simple_dilate_head'
+    SCALE: 4
+
+  TEST:
+    CKPT_PATH: '/path/to/checkpoints/detector/checkpoint.pth.tar'
+    RES_PATH: '/path/to/output/detector_test_output'
+    NULL_JSON_PATH: '/path/to/output/'
+    DECODER_METHOD: 'SIMPLE_DILATE'
+    OUTPUT_BOX: True
+  TRAIN:
+    SAVE_PATH: '/path/to/checkpoints/detector'
+    SUM_STEP: 50000
+    OPTIMIZER:
+      LR: 0.001
+      MODE: 'step'  # cos,poly,step
+
+DATASET:
+  TEST:
+    ROOT_PATH: '/path/to/official_data/test_image'
+    LONG_SIZE: 1920
+
+  TRAIN:
+    ROOT_PATH: '/path/to/official_data'
+    DATASET_NAME_LIST: ['common_train','special_train']
+    BATCH_SIZE: 8
+    NUM_WORKERS: 8
+    CHECK_ALL_IMGS: False
+    PIN_MEMORY: True
+    DROP_LAST: True

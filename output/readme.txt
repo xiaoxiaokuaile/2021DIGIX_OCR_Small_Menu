@@ -1,0 +1,2 @@
+detector_test_output中保存用于识别模型的测试集，图片后缀名统一为JPEG格式
+recognizer_log文件中保存训练日志
